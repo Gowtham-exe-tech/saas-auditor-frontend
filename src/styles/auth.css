@@ -1,4 +1,3 @@
-/* Remove default browser spacing */
 * {
   margin: 0;
   padding: 0;
@@ -6,10 +5,9 @@
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
   height: 100%;
   overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #root {
@@ -26,92 +24,74 @@ html, body {
   overflow: hidden;
 }
 
-/* Animated Grid Background */
-.auth-container::before {
-  content: "";
+.grid-lines {
   position: absolute;
   width: 200%;
   height: 200%;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(253, 253, 253, 0.241) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 253, 253, 0.241) 1px, transparent 1px);
   background-size: 40px 40px;
-  animation: moveGrid 30s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  opacity: 0.8;
+  opacity: 0.2;
+  animation: moveGrid 60s linear infinite;
 }
 
 @keyframes moveGrid {
-  0% { transform: translate(0,0); }
+  0%   { transform: translate(0,0); }
   100% { transform: translate(-200px,-200px); }
 }
 
-/* Glow Orbs */
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.50;
-  animation: float 20s ease-in-out infinite;
+  background: rgba(59, 130, 246, 0.6); /* default blue glow */
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59,130,246,0.6);
+  filter: blur(30px);
+  animation: floatOrb 20s ease-in-out infinite;
 }
 
-.orb1 {
-  width: 400px;
-  height: 400px;
-  background: #3b82f6;
-  top: 10%;
-  left: 10%;
+.orb1 { width: 150px; height: 150px; top: 10%; left: 10%; animation-duration: 25s; }
+.orb2 { width: 100px; height: 100px; top: 50%; left: 30%; background: rgba(16, 185, 129,0.6); box-shadow: 0 0 30px rgba(16,185,129,0.8),0 0 60px rgba(16,185,129,0.6); animation-duration: 30s; }
+.orb3 { width: 200px; height: 200px; top: 30%; right: 15%; background: rgba(122, 143, 74, 0.853); box-shadow: 0 0 30px rgba(99,102,241,0.8),0 0 60px rgba(99,102,241,0.6); animation-duration: 35s; }
+
+@keyframes floatOrb {
+  0%   { transform: translate(0,0) scale(1); opacity:0.6; }
+  25%  { transform: translate(40px, -30px) scale(1.05); opacity:0.8; }
+  50%  { transform: translate(-50px, -60px) scale(1.1); opacity:0.7; }
+  75%  { transform: translate(30px, -40px) scale(1.05); opacity:0.85; }
+  100% { transform: translate(0,0) scale(1); opacity:0.6; }
 }
 
-.orb2 {
-  width: 300px;
-  height: 300px;
-  background: #10b981;
-  bottom: 15%;
-  right: 10%;
-  animation-duration: 25s;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-60px); }
-  100% { transform: translateY(0px); }
-}
-
-/* Glass Card */
 .auth-card {
   position: relative;
   z-index: 2;
-  width: 380px;
-  padding: 45px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  color: white;
-}
-
-
-.auth-card {
   width: 400px;
-  padding: 40px 35px;
+  padding: 45px 35px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 
-  
   display: flex;
   flex-direction: column;
-  align-items: center;   
+  align-items: center;
   justify-content: center;
   text-align: center;
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
 }
 
 .auth-card h2 {
   margin-bottom: 30px;
   font-weight: 600;
   color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
 
 .auth-card form {
@@ -128,30 +108,59 @@ html, body {
   border-radius: 10px;
   border: none;
   outline: none;
-  background: rgba(255, 255, 255, 0.233);
-  color: rgba(255, 255, 255, 0.341);
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.1);
 }
 
 .auth-input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.auth-input:focus {
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 10px rgba(59,130,246,0.6);
+  transform: scale(1.02);
+}
+
 .auth-button {
   width: 100%;
   padding: 14px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   font-weight: 600;
   font-size: 15px;
   background: linear-gradient(90deg, #3b82f6, #10b981);
   color: white;
-  transition: 0.3s ease;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.auth-button::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 0%;
+  top: 50%;
+  left: -10%;
+  transform: translateY(-50%) rotate(25deg);
+  background: rgba(255,255,255,0.2);
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.auth-button:hover::before {
+  height: 300%;
 }
 
 .auth-button:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(59,130,246,0.5);
 }
 
 .auth-footer {
@@ -163,4 +172,10 @@ html, body {
   color: #10b981;
   text-decoration: none;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #3b82f6;
+  text-shadow: 0 0 6px rgba(16,185,129,0.6);
 }

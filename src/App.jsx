@@ -2,7 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import AddSubscription from "./pages/AddSubscription";
+import Subscriptions from "./pages/Subscriptions";
 import PrivateRoute from "./routes/privateRoute";
+import ProtectedLayout from "./layouts/ProtectedLayout";
 
 function App() {
   return (
@@ -14,14 +17,13 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Protected Route */}
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
+        <Route element={<PrivateRoute />}>
+          <Route element={<ProtectedLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/add-subscription" element={<AddSubscription />} />
+          <Route path="/subscriptions" element={<Subscriptions />} />
+          </Route>
+        </Route>
 
       </Routes>
     </BrowserRouter>

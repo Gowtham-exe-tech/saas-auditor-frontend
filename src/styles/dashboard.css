@@ -1,126 +1,116 @@
-/* MAIN LAYOUT */
-.dashboard-container {
-  display: flex;
-  height: 100vh;
-  background: #0f2f33;
-  font-family: "Inter", sans-serif;
+body{
+  margin: 0;
+  overflow: hidden;
 }
 
-/* SIDEBAR */
+
+.layout-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #00f5a0, #00d9f5);
+  font-family: "Segoe UI", sans-serif;
+}
+
 .sidebar {
   width: 240px;
-  background: linear-gradient(180deg, #083c3f, #0d5559);
-  padding: 35px 20px;
+  background: #0f2027;
+  color: white;
   display: flex;
   flex-direction: column;
+  padding: 24px;
   justify-content: space-between;
-  color: white;
 }
 
 .logo {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 40px;
-  color: #8ef5e7;
 }
 
-.menu {
-  list-style: none;
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.menu li {
-  padding: 12px 14px;
-  margin-bottom: 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 14px;
+.nav-links a {
+  text-decoration: none;
+  color: #d0fefe;
+  font-weight: 500;
 }
 
-.menu li:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateX(6px);
+.nav-links a:hover {
+  color: white;
 }
 
 .logout-btn {
   padding: 10px;
   border: none;
-  border-radius: 8px;
-  background: #00ffd5;
-  color: #063336;
+  background: #00f5a0;
+  color: #111;
   font-weight: 600;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.logout-btn:hover {
-  transform: scale(1.05);
-}
-
-/* MAIN AREA */
-.main-content {
+.main-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #e6fffb, #f0fdfc);
+  overflow: hidden;
 }
 
-/* TOPBAR */
 .topbar {
   height: 70px;
-  background: white;
+  background: rgba(174, 11, 11, 0);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.topbar h2 {
-  font-weight: 600;
-  color: #0d5559;
+  font-size: x-large;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: 0 2px 8px rgba(186, 15, 15, 0.156);
 }
 
 .role-badge {
-  background: #0d5559;
-  color: white;
+  background: #8d0de8f9;
+  color: #f9ffff;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: bold;
 }
 
-/* CONTENT GRID */
 .content-area {
+  flex: 1;
   padding: 40px;
+  background: #f9ffff;
+  overflow-y: auto;
+}
+
+.dashboard-page {
+  width: 100%;
+}
+
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
 }
 
-/* CARDS */
-.card {
+.stat-card {
   background: white;
-  border-radius: 18px;
-  padding: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  transition: 0.3s ease;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(13, 85, 89, 0.15);
+.stat-card p {
+  color: #666;
+  margin-bottom: 10px;
 }
 
-.card h3 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 12px;
-  color: #6b7280;
-}
-
-.card p {
-  font-size: 32px;
-  font-weight: 700;
-  color: #0d5559;
+.stat-card h2 {
+  font-size: 28px;
+  color: #0f2027;
 }
