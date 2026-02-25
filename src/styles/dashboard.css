@@ -1,0 +1,126 @@
+/* MAIN LAYOUT */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background: #0f2f33;
+  font-family: "Inter", sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #083c3f, #0d5559);
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #8ef5e7;
+}
+
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 14px;
+}
+
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(6px);
+}
+
+.logout-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #00ffd5;
+  color: #063336;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  transform: scale(1.05);
+}
+
+/* MAIN AREA */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #e6fffb, #f0fdfc);
+}
+
+/* TOPBAR */
+.topbar {
+  height: 70px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.topbar h2 {
+  font-weight: 600;
+  color: #0d5559;
+}
+
+.role-badge {
+  background: #0d5559;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* CONTENT GRID */
+.content-area {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(13, 85, 89, 0.15);
+}
+
+.card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #6b7280;
+}
+
+.card p {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0d5559;
+}
