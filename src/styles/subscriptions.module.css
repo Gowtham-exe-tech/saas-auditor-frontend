@@ -88,3 +88,118 @@
   margin-top: 20px;
   font-style: italic;
 }
+
+/* Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 25, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Glass Card */
+.modalCard {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  padding: 24px;
+  width: 340px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+/* Title */
+.modalCard h3 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Inputs */
+.modalInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.modalInput::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Buttons container */
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Save Button */
+.saveBtn {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.saveBtn:hover {
+  background: #5848e5;
+}
+
+/* Cancel Button */
+.cancelBtn {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.updateBtn {
+  background: rgba(108, 99, 255, 0.85);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: 0.2s ease;
+  margin-left: 5%;
+}
+
+.updateBtn:hover {
+  background: rgba(108, 99, 255, 1);
+}

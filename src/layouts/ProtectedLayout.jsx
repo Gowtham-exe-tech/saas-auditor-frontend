@@ -1,7 +1,31 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import "../styles/dashboard.css";
 
 const ProtectedLayout = () => {
+
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setUsername(decoded.sub); // adjust based on key from backend
+      } catch (error) {
+        console.error("Invalid token");
+      }
+    }
+  }, []);
+
   return (
     <div className="layout-container">
 
@@ -15,14 +39,18 @@ const ProtectedLayout = () => {
           <Link to="/add-subscription">Add Subscription</Link>
         </nav>
 
-        <button className="logout-btn">Logout</button>
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
       </aside>
 
       <div className="main-section">
 
         <header className="topbar">
           <h3>Dashboard</h3>
-          <span className="role-badge">USER</span>
+          <span className="role-badge">
+            {username || "User"}
+          </span>
         </header>
 
         <div className="content-area">

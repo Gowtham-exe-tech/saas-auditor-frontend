@@ -1,25 +1,42 @@
-body{
-  margin: 0;
-  overflow: hidden;
+/* Global Reset + Smooth Transitions */
+* {
+  box-sizing: border-box;
+  transition: all 0.25s ease;
 }
 
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+}
 
+/* Layout Container with Animated Gradient */
 .layout-container {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #00f5a0, #00d9f5);
-  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(-45deg, #00f5a0, #00d9f5, #6c63ff, #8d0de8);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sidebar Glass Effect */
 .sidebar {
   width: 240px;
-  background: #0f2027;
+  background: rgba(15, 32, 39, 0.9);
+  backdrop-filter: blur(10px);
   color: white;
   display: flex;
   flex-direction: column;
   padding: 24px;
   justify-content: space-between;
+  box-shadow: 5px 0 25px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
@@ -28,32 +45,46 @@ body{
   margin-bottom: 40px;
 }
 
+/* Navigation Links */
 .nav-links {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  margin-bottom: 9em;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #d0fefe;
   font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
 }
 
 .nav-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
   color: white;
+  transform: translateX(6px);
 }
 
+/* Logout Button */
 .logout-btn {
   padding: 10px;
   border: none;
-  background: #00f5a0;
+  background: linear-gradient(135deg, #00f5a0, #00d9f5);
   color: #111;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 245, 160, 0.4);
 }
 
+.logout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 245, 160, 0.6);
+}
+
+/* Main Section */
 .main-section {
   flex: 1;
   display: flex;
@@ -61,48 +92,99 @@ body{
   overflow: hidden;
 }
 
+/* Topbar */
 .topbar {
   height: 70px;
-  background: rgba(174, 11, 11, 0);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   font-size: x-large;
   justify-content: space-between;
   padding: 0 30px;
-  box-shadow: 0 2px 8px rgba(186, 15, 15, 0.156);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .role-badge {
-  background: #8d0de8f9;
-  color: #f9ffff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 18px;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  color: #430808;
+
+  /* Adaptive glass style */
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.3s ease;
+}
+.role-badge:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
 
+/* Content Area Fade-in */
 .content-area {
   flex: 1;
   padding: 40px;
   background: #f9ffff;
   overflow-y: auto;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dashboard Page */
 .dashboard-page {
   width: 100%;
 }
 
+.page-title {
+  text-align: left;
+  margin-bottom: 0.3em;
+}
+
+/* Stats Grid */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
 }
 
+/* Stat Cards with Glass + Hover */
 .stat-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.542);
+  backdrop-filter: blur(8px);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .stat-card p {

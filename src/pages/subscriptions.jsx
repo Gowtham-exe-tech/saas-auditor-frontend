@@ -35,6 +35,8 @@ const sampleData = [
 
 const Subscriptions = () => {
   const [subscriptions, setSubscriptions] = useState(sampleData);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editingSub, setEditingSub] = useState(null);
 
   const today = new Date();
 
@@ -45,6 +47,16 @@ const Subscriptions = () => {
 
   const handleDelete = (id) => {
     setSubscriptions((prev) => prev.filter((sub) => sub.id !== id));
+  };
+
+  const handleUpdate = (updatedSub) => {
+    setSubscriptions((prev) =>
+      prev.map((sub) =>
+      sub.id === updatedSub.id ? updatedSub : sub
+    )
+    );
+
+    setIsEditOpen(false);
   };
 
   return (
@@ -91,6 +103,15 @@ const Subscriptions = () => {
                       >
                         Delete
                       </button>
+                      <button
+                          className={styles.updateBtn}
+                          onClick={() => {
+                          setEditingSub(sub);
+                          setIsEditOpen(true);}}
+                        >
+                          Update
+                      </button>
+
                     </td>
                   </tr>
                 );
@@ -101,6 +122,56 @@ const Subscriptions = () => {
           <div className={styles.noData}>No subscriptions available.</div>
         )}
       </div>
+      {isEditOpen && editingSub && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalCard}>
+              <h3>Update Subscription</h3>
+
+              <input
+                className={styles.modalInput}
+                type="text"
+                value={editingSub.serviceName}
+                onChange={(e) =>
+                  setEditingSub({ ...editingSub, serviceName: e.target.value })
+                }
+              />
+
+              <input
+                className={styles.modalInput}
+                type="text"
+                value={editingSub.cost}
+                onChange={(e) =>
+                  setEditingSub({ ...editingSub, cost: e.target.value })
+                }
+              />
+
+              <input
+                className={styles.modalInput}
+                type="date"
+                value={editingSub.renewalDate}
+                onChange={(e) =>
+                  setEditingSub({ ...editingSub, renewalDate: e.target.value })
+                }
+              />
+
+              <div className={styles.modalActions}>
+                <button
+                  className={styles.saveBtn}
+                  onClick={() => handleUpdate(editingSub)}
+                >
+                  Save
+                </button>
+
+                <button
+                  className={styles.cancelBtn}
+                  onClick={() => setIsEditOpen(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   );
 };
