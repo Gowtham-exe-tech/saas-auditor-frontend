@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../api/authService";
 import "../styles/auth.css";
 
 const Register = () => {
@@ -15,13 +16,22 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Registered user:", form);//to check register
+    try {
+      await registerUser(form);
 
-    // Temporary fake register
-    navigate("/");
+      // Optional: redirect to login
+      navigate("/");
+
+    } catch (error) {
+      console.error("Registration failed:", error);
+
+      alert(
+        error.response?.data?.message || "Registration failed"
+      );
+    }
   };
 
   return (

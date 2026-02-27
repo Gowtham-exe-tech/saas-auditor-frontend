@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
+import { loginUser } from "../api/authService"; 
 import "../styles/auth.css";
 
 const Login = () => {
@@ -12,12 +13,31 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Temporary fake login
-    login("dummy-token", "USER");
-    navigate("/dashboard");
+    try {
+      // CALL BACKEND
+      const data = await loginUser(form);
+
+      // EXPECTING THIS RESPONSE FORMAT:
+      // {
+      //   token: "...",
+      //   role: "USER",
+      //   username: "gowtham"
+      // }
+
+      login(data.token, data.role, data.username);
+
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.error("Login failed:", error);
+
+      // Optional 
+      alert(
+        error.response?.data?.message || "Invalid credentials");
+    }
   };
 
   return (

@@ -1,34 +1,19 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
 import "../styles/dashboard.css";
 
 const ProtectedLayout = () => {
-
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const { user, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    logout();
     navigate("/");
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUsername(decoded.sub); // adjust based on key from backend
-      } catch (error) {
-        console.error("Invalid token");
-      }
-    }
-  }, []);
-
   return (
     <div className="layout-container">
-
       <aside className="sidebar">
         <h2 className="logo">SaaS Auditor</h2>
 
@@ -45,18 +30,16 @@ const ProtectedLayout = () => {
       </aside>
 
       <div className="main-section">
-
         <header className="topbar">
           <h3>Dashboard</h3>
           <span className="role-badge">
-            {username || "User"}
+            {user?.username || "User"}
           </span>
         </header>
 
         <div className="content-area">
           <Outlet />
         </div>
-
       </div>
     </div>
   );
